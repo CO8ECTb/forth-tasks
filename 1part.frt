@@ -1,9 +1,6 @@
 : check_parity
   dup 2 %
-  if ." Нечетное " else ." Четное " then 
-  cr
 ;
-
 
 ( x — )
 ( x -> 0/1 )
