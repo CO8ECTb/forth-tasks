@@ -17,17 +17,30 @@
 : pull , ; IMMEDIATE
 : readc inbuf readc@ inbuf c@ ;
 
-: repeat here 8 + ; IMMEDIATE
-: until 'to_lit branch_if , , ; IMMEDIATE
+: do 
+	here 8 + 
+; IMMEDIATE
 
-: ( repeat readc 41 - until ; IMMEDIATE
-: " inbuf dec repeat inc dup dup readc@ c@ 34 -  until 0 swap c! inbuf print ; IMMEDIATE
+: while 
+	'to_lit branch_if , , 
+; IMMEDIATE
+
+: ( do readc 41 - while ; IMMEDIATE
+: " inbuf dec do inc dup dup readc@ c@ 34 -  while 0 swap c! inbuf print ; IMMEDIATE
 : cr 10 emit ; 
 
-: if 'to_lit not , 'to_lit branch_if , 0 , here  ; IMMEDIATE
+: if 
+	'to_lit not , 'to_lit branch_if , 0 , here  
+; IMMEDIATE
 
-: else 'to_lit branch , here 8 + 0 , swap here 8 + swap !  ; IMMEDIATE
-: then here 8 + swap ! ; IMMEDIATE
+: else 
+	'to_lit branch , here 8 + 0 , swap here 8 + swap !  
+; IMMEDIATE
+
+
+: then 
+	here 8 + swap ! 
+; IMMEDIATE
 
 " Welcome to forth machine "
 cr
